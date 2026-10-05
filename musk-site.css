@@ -171,6 +171,16 @@ button, input, textarea { font: inherit; }
 .page-hero--image > *:not(img) { position: relative; z-index: 1; }
 .page-hero--image .lead { color: rgba(255,255,255,.68); }
 
+.services-hero { display: grid; grid-template-columns: minmax(0,1.04fr) minmax(440px,.96fr); align-items: center; gap: clamp(38px,5vw,86px); padding-top: 128px; }
+.services-hero__content { min-width: 0; }
+.services-hero .display { max-width: 830px; margin-top: 26px; font-size: clamp(52px,5.7vw,88px); }
+.services-hero .page-hero__bottom { align-items: flex-start; flex-direction: column; gap: 22px; margin-top: 34px; }
+.services-hero .page-hero__bottom > span { color: var(--muted); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.services-hero__visual { --liquid-ripple-radius: 34px; width: 100%; aspect-ratio: 1.28; margin: 0; border-radius: 34px; box-shadow: 0 42px 86px -55px rgba(0,0,0,.72); transform: rotate(1deg); }
+.services-hero__visual [data-liquid-ripple-stage],
+.services-hero__visual img,
+.services-hero__visual canvas { border-radius: inherit; }
+
 .service-detail { padding: 130px 0; border-bottom: 1px solid var(--line); }
 .service-detail__grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 7vw; align-items: center; }
 .service-detail:nth-child(even) .service-detail__media { order: 2; }
@@ -206,6 +216,8 @@ button, input, textarea { font: inherit; }
   .service-card, .service-card:nth-child(n) { grid-column: span 6; }
   .system-map { grid-template-columns: 1fr 1fr; }
   .system-node::after { display: none; }
+  .services-hero { grid-template-columns: 1fr; align-content: center; }
+  .services-hero__visual { width: min(760px,92%); justify-self: center; }
 }
 
 @media (max-width: 809.98px) {
@@ -243,6 +255,10 @@ button, input, textarea { font: inherit; }
   .musk-wordmark { font-size: 34vw; }
   .page-hero { min-height: 650px; padding: 130px 24px 48px; }
   .page-hero .display { font-size: 56px; }
+  .services-hero { display: grid; gap: 34px; padding-top: 112px; }
+  .services-hero .display { font-size: clamp(42px,11.4vw,54px); }
+  .services-hero .page-hero__bottom { gap: 14px; margin-top: 26px; }
+  .services-hero__visual { width: 100%; aspect-ratio: 1.12; border-radius: 25px; transform: none; }
   .service-detail { padding: 88px 0; }
   .service-detail__grid { grid-template-columns: 1fr; gap: 34px; }
   .service-detail:nth-child(even) .service-detail__media { order: 0; }
@@ -253,6 +269,10 @@ button, input, textarea { font: inherit; }
   .beliefs { padding: 100px 0 130px; }
   .beliefs__items { grid-template-columns: 1fr; }
   .belief:nth-child(n) { transform: none; }
+}
+
+@media (max-width: 480px) {
+  .header-actions .call-button { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
