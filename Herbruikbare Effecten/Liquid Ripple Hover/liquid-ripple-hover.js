@@ -163,9 +163,13 @@
     let heightBytes;
 
     function resize() {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      const width = Math.max(1, Math.round(stage.clientWidth * ratio));
-      const height = Math.max(1, Math.round(stage.clientHeight * ratio));
+      const cssWidth = Math.max(1, stage.clientWidth);
+      const cssHeight = Math.max(1, stage.clientHeight);
+      const maxCanvasPixels = 2200000;
+      const adaptiveRatio = Math.sqrt(maxCanvasPixels / (cssWidth * cssHeight));
+      const ratio = Math.max(.75, Math.min(window.devicePixelRatio || 1, 2, adaptiveRatio));
+      const width = Math.max(1, Math.round(cssWidth * ratio));
+      const height = Math.max(1, Math.round(cssHeight * ratio));
       if (canvas.width !== width || canvas.height !== height) {
         canvas.width = width;
         canvas.height = height;

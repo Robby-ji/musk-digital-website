@@ -171,15 +171,17 @@ button, input, textarea { font: inherit; }
 .page-hero--image > *:not(img) { position: relative; z-index: 1; }
 .page-hero--image .lead { color: rgba(255,255,255,.68); }
 
-.services-hero { display: grid; grid-template-columns: minmax(0,1.04fr) minmax(440px,.96fr); align-items: center; gap: clamp(38px,5vw,86px); padding-top: 128px; }
-.services-hero__content { min-width: 0; }
-.services-hero .display { max-width: 830px; margin-top: 26px; font-size: clamp(52px,5.7vw,88px); }
-.services-hero .page-hero__bottom { align-items: flex-start; flex-direction: column; gap: 22px; margin-top: 34px; }
-.services-hero .page-hero__bottom > span { color: var(--muted); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
-.services-hero__visual { --liquid-ripple-radius: 34px; width: 100%; aspect-ratio: 1.28; margin: 0; border-radius: 34px; box-shadow: 0 42px 86px -55px rgba(0,0,0,.72); transform: rotate(1deg); }
-.services-hero__visual [data-liquid-ripple-stage],
-.services-hero__visual img,
-.services-hero__visual canvas { border-radius: inherit; }
+.services-hero { position: relative; min-height: calc(100svh - 16px); overflow: hidden; isolation: isolate; justify-content: flex-end; color: white; background: #08090b url("assets/musk/hero-musk.webp") center / cover no-repeat; }
+.services-hero::after { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(90deg,rgba(4,5,7,.9) 0%,rgba(4,5,7,.62) 44%,rgba(4,5,7,.12) 82%), linear-gradient(0deg,rgba(4,5,7,.76),transparent 58%); }
+.services-hero .services-hero__visual { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; box-shadow: none; }
+.services-hero .services-hero__visual img,
+.services-hero .services-hero__visual canvas { border-radius: inherit; }
+.services-hero.liquid-ripple-hover.is-liquid-ripple-ready [data-liquid-ripple-source] { opacity: 1; }
+.services-hero.liquid-ripple-hover.is-liquid-ripple-ready [data-liquid-ripple-canvas] { opacity: .48; mix-blend-mode: screen; }
+.services-hero__content { position: relative; z-index: 2; width: 100%; pointer-events: none; }
+.services-hero .display { max-width: 1050px; margin-top: 26px; font-size: clamp(56px,7vw,108px); text-shadow: 0 8px 34px rgba(0,0,0,.3); }
+.services-hero .lead { color: rgba(255,255,255,.78); }
+.services-hero .page-hero__bottom > span { color: rgba(255,255,255,.7); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
 
 .service-detail { padding: 130px 0; border-bottom: 1px solid var(--line); }
 .service-detail__grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 7vw; align-items: center; }
@@ -216,8 +218,6 @@ button, input, textarea { font: inherit; }
   .service-card, .service-card:nth-child(n) { grid-column: span 6; }
   .system-map { grid-template-columns: 1fr 1fr; }
   .system-node::after { display: none; }
-  .services-hero { grid-template-columns: 1fr; align-content: center; }
-  .services-hero__visual { width: min(760px,92%); justify-self: center; }
 }
 
 @media (max-width: 809.98px) {
@@ -255,10 +255,11 @@ button, input, textarea { font: inherit; }
   .musk-wordmark { font-size: 34vw; }
   .page-hero { min-height: 650px; padding: 130px 24px 48px; }
   .page-hero .display { font-size: 56px; }
-  .services-hero { display: grid; gap: 34px; padding-top: 112px; }
-  .services-hero .display { font-size: clamp(42px,11.4vw,54px); }
-  .services-hero .page-hero__bottom { gap: 14px; margin-top: 26px; }
-  .services-hero__visual { width: 100%; aspect-ratio: 1.12; border-radius: 25px; transform: none; }
+  .services-hero { padding-top: 132px; background-position: 56% center; }
+  .services-hero::after { background: linear-gradient(180deg,rgba(4,5,7,.28) 0%,rgba(4,5,7,.66) 42%,rgba(4,5,7,.94) 100%); }
+  .services-hero .services-hero__visual img { object-position: 56% center; }
+  .services-hero .display { font-size: clamp(42px,12vw,58px); }
+  .services-hero .page-hero__bottom { gap: 14px; margin-top: 28px; }
   .service-detail { padding: 88px 0; }
   .service-detail__grid { grid-template-columns: 1fr; gap: 34px; }
   .service-detail:nth-child(even) .service-detail__media { order: 0; }
