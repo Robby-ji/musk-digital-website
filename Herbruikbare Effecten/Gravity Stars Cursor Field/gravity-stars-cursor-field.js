@@ -13,10 +13,10 @@
       this.baseCount = Number(root.dataset.count) || 240;
       this.connectDistance = Number(root.dataset.connectDistance) || 120;
       this.tint = clamp(Number(root.dataset.tint) || .65, 0, 1);
-      this.gravityRadius = Number(root.dataset.gravityRadius) || 340;
-      this.gravityStrength = clamp(Number(root.dataset.gravityStrength) || .2, .04, .4);
-      this.pointerResponse = clamp(Number(root.dataset.pointerResponse) || .32, .05, 1);
-      this.maxOffset = clamp(Number(root.dataset.maxOffset) || 130, 40, 220);
+      this.gravityRadius = Number(root.dataset.gravityRadius) || 380;
+      this.gravityStrength = clamp(Number(root.dataset.gravityStrength) || .22, .04, .4);
+      this.pointerResponse = clamp(Number(root.dataset.pointerResponse) || .36, .05, 1);
+      this.maxOffset = clamp(Number(root.dataset.maxOffset) || 140, 40, 220);
       this.stars = [];
       this.width = 0;
       this.height = 0;
