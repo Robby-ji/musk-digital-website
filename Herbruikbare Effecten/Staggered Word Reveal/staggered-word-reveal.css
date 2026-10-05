@@ -1,0 +1,37 @@
+/* Staggered Word Reveal — woord-voor-woord slide-up met een zachte fade. */
+.staggered-word-reveal {
+  --word-reveal-duration: 850ms;
+  --word-reveal-delay: 120ms;
+  --word-reveal-step: 55ms;
+  --word-reveal-distance: 32px;
+  --word-reveal-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+.staggered-word-reveal__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, var(--word-reveal-distance), 0);
+  will-change: opacity, transform;
+}
+
+.staggered-word-reveal.is-word-reveal-ready .staggered-word-reveal__word {
+  animation: staggered-word-reveal-in var(--word-reveal-duration)
+    calc(var(--word-reveal-delay) + var(--word-reveal-index) * var(--word-reveal-step))
+    var(--word-reveal-ease) forwards;
+}
+
+@keyframes staggered-word-reveal-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staggered-word-reveal__word {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+    will-change: auto;
+  }
+}

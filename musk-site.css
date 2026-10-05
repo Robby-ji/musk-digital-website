@@ -69,9 +69,6 @@ button, input, textarea { font: inherit; }
 .musk-hero__visual { --liquid-ripple-radius: 36px; width: min(680px,48vw); aspect-ratio: 1.34; justify-self: end; margin: 40px 0 0; border-radius: 36px; box-shadow: 0 45px 80px -48px rgba(0,0,0,.5); transform: rotate(1.5deg); }
 .musk-hero__visual [data-liquid-ripple-stage], .musk-hero__visual img, .musk-hero__visual canvas { border-radius: inherit; }
 .musk-hero__note { position: absolute; right: 5.4vw; bottom: 34px; color: #8c8c8c; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
-.reveal-word { display: inline-block; opacity: 0; transform: translateY(32px); animation: word-in .85s calc(.12s + var(--i)*.055s) cubic-bezier(.22,1,.36,1) forwards; }
-@keyframes word-in { to { opacity: 1; transform: none; } }
-
 .usp-rail { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.45); }
 .usp-rail__track { display: flex; width: max-content; animation: rail 32s linear infinite; }
 .usp-rail__group { display: flex; }
