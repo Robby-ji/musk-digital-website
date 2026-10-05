@@ -2,6 +2,27 @@
 (function () {
   const selector = '[data-staggered-word-reveal]';
 
+  const pageTransitionReady = new Promise(resolve => {
+    if (!('onpagereveal' in window)) {
+      resolve();
+      return;
+    }
+
+    let resolved = false;
+    const finish = () => {
+      if (resolved) return;
+      resolved = true;
+      resolve();
+    };
+
+    window.addEventListener('pagereveal', event => {
+      if (event.viewTransition) event.viewTransition.finished.then(finish, finish);
+      else finish();
+    }, { once: true });
+
+    setTimeout(finish, 900);
+  });
+
   function splitWords(element) {
     const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
     const textNodes = [];
@@ -52,14 +73,17 @@
       });
     };
 
+    let fontReady = Promise.resolve();
+
     if (document.fonts && document.fonts.load) {
       const style = getComputedStyle(element);
       const fontRequest = `${style.fontWeight} 1em ${style.fontFamily}`;
-      document.fonts.load(fontRequest, element.textContent).then(startReveal, startReveal);
-      setTimeout(startReveal, 900);
-    } else {
-      startReveal();
+      const fontLoaded = document.fonts.load(fontRequest, element.textContent).catch(() => {});
+      const fontTimeout = new Promise(resolve => setTimeout(resolve, 900));
+      fontReady = Promise.race([fontLoaded, fontTimeout]);
     }
+
+    Promise.all([fontReady, pageTransitionReady]).then(startReveal);
   }
 
   function initAll(root = document) {
