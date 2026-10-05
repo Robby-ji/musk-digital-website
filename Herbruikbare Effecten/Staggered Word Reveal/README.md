@@ -2,6 +2,8 @@
 
 Een herbruikbare intro-animatie waarbij een kop woord voor woord omhoog beweegt en zichtbaar wordt. De woorden worden automatisch door JavaScript opgebouwd; bestaande `<br>`-elementen blijven behouden.
 
+Het effect wacht totdat het lettertype van de kop geladen is en start daarna op een stabiele layout. Hierdoor verandert de regelverdeling niet midden in de animatie. Een korte timeout voorkomt dat de reveal door een ontbrekend font blijft wachten. Wanneer JavaScript niet start, wordt de originele kop na drie seconden automatisch zichtbaar.
+
 ## Gebruik
 
 ```html

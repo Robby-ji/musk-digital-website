@@ -41,9 +41,25 @@
     element.classList.add('staggered-word-reveal');
     splitWords(element);
 
-    requestAnimationFrame(() => {
-      element.classList.add('is-word-reveal-ready');
-    });
+    let revealStarted = false;
+    const startReveal = () => {
+      if (revealStarted) return;
+      revealStarted = true;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          element.classList.add('is-word-reveal-ready');
+        });
+      });
+    };
+
+    if (document.fonts && document.fonts.load) {
+      const style = getComputedStyle(element);
+      const fontRequest = `${style.fontWeight} 1em ${style.fontFamily}`;
+      document.fonts.load(fontRequest, element.textContent).then(startReveal, startReveal);
+      setTimeout(startReveal, 900);
+    } else {
+      startReveal();
+    }
   }
 
   function initAll(root = document) {
