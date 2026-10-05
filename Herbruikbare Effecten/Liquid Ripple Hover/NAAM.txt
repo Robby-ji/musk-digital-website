@@ -1,0 +1,3 @@
+Liquid Ripple Hover
+
+WebGL-afbeeldingseffect met cursor-gestuurde waterrimpels en UV-displacement.

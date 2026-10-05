@@ -1,0 +1,39 @@
+/*
+ * Effect: Soft Spring Image Zoom
+ * The frame stays still while the image softly scales inside it.
+ */
+.soft-spring-image-zoom {
+  --image-hover-scale: 1.1;
+  --image-hover-duration: 720ms;
+  --image-hover-ease: cubic-bezier(.22, 1.18, .36, 1);
+  overflow: hidden;
+}
+
+.soft-spring-image-zoom > img,
+.soft-spring-image-zoom__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scale: 1;
+  transform-origin: 50% 50%;
+  transition: scale var(--image-hover-duration) var(--image-hover-ease);
+  will-change: scale;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .soft-spring-image-zoom:hover > img,
+  .soft-spring-image-zoom:hover .soft-spring-image-zoom__image,
+  .soft-spring-image-zoom:focus-within > img,
+  .soft-spring-image-zoom:focus-within .soft-spring-image-zoom__image {
+    scale: var(--image-hover-scale);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soft-spring-image-zoom > img,
+  .soft-spring-image-zoom__image {
+    scale: 1 !important;
+    transition: none;
+  }
+}

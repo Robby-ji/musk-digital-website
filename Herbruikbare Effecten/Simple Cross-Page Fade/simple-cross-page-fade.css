@@ -1,0 +1,44 @@
+/*
+ * Effect: Simple Cross-Page Fade
+ * Load this stylesheet on every page that participates in the transition.
+ */
+:root {
+  --page-fade-duration: 500ms;
+  --page-fade-exit-ease: ease-in;
+  --page-fade-enter-ease: ease-out;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  backface-visibility: hidden;
+}
+
+::view-transition-old(root) {
+  animation: simple-page-fade-out var(--page-fade-duration) var(--page-fade-exit-ease) both;
+}
+
+::view-transition-new(root) {
+  animation: simple-page-fade-in var(--page-fade-duration) var(--page-fade-enter-ease) both;
+}
+
+@keyframes simple-page-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes simple-page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: .01ms !important;
+  }
+}

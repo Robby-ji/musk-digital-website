@@ -1,0 +1,5 @@
+Asymmetric Editorial Parallax Grid
+
+Korte omschrijving:
+Een vrij verdeeld portfolio-overzicht met afwisselende kaartformaten, versterkte
+beeldparallax en staggered tekst-reveals.

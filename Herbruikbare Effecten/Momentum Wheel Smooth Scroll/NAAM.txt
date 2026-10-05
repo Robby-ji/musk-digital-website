@@ -1,0 +1,5 @@
+Momentum Wheel Smooth Scroll
+
+Korte omschrijving:
+Globale scrollinertie die een muiswiel of trackpad laat aanvoelen als een zwaar
+wiel dat na de invoer zacht doorrolt en geleidelijk tot stilstand komt.

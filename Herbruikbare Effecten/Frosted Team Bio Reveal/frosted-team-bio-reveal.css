@@ -1,0 +1,145 @@
+/*
+ * Effect: Frosted Team Bio Reveal
+ * A fixed profile frame with a soft image treatment and rising biography.
+ */
+.frosted-team-card {
+  --team-card-radius: 24px;
+  --team-image-radius: 20px;
+  --team-image-scale: 1.05;
+  --team-image-blur: 1.4px;
+  --team-reveal-duration: 500ms;
+  --team-reveal-ease: cubic-bezier(.22, 1.06, .36, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #141414;
+  text-decoration: none;
+}
+
+.frosted-team-card,
+.frosted-team-card * {
+  box-sizing: border-box;
+}
+
+.frosted-team-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  padding: 4px;
+  overflow: hidden;
+  border-radius: var(--team-card-radius);
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, .04),
+    0 1px 2px rgba(0, 0, 0, .08),
+    0 4px 6px rgba(0, 0, 0, .04),
+    0 32px 48px -28px rgba(0, 0, 0, .16);
+}
+
+.frosted-team-card__clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--team-image-radius);
+  background: #ddd;
+}
+
+.frosted-team-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scale: 1;
+  filter: blur(0) saturate(1) brightness(1);
+  transform-origin: 50% 50%;
+  transition:
+    scale var(--team-reveal-duration) var(--team-reveal-ease),
+    filter var(--team-reveal-duration) var(--team-reveal-ease);
+  will-change: scale, filter;
+}
+
+.frosted-team-card__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 53%,
+    rgba(0, 0, 0, .4) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--team-reveal-duration) var(--team-reveal-ease);
+  pointer-events: none;
+}
+
+.frosted-team-card__bio {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1;
+  margin: 0;
+  color: #fff;
+  font: 400 16px/24px Inter, Arial, sans-serif;
+  letter-spacing: -.32px;
+  opacity: 0;
+  transform: translateY(124px);
+  transition:
+    opacity var(--team-reveal-duration) var(--team-reveal-ease),
+    transform var(--team-reveal-duration) var(--team-reveal-ease);
+  will-change: opacity, transform;
+}
+
+.frosted-team-card__identity {
+  padding-inline: 12px;
+}
+
+.frosted-team-card__name {
+  margin: 0;
+  font: 400 32px/36px "Fraunces Variable", Fraunces, Georgia, serif;
+  letter-spacing: -1.28px;
+}
+
+.frosted-team-card__role {
+  margin: 8px 0 0;
+  color: #656565;
+  font: 400 16px/24px Inter, Arial, sans-serif;
+  letter-spacing: -.32px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .frosted-team-card:hover .frosted-team-card__image,
+  .frosted-team-card:focus-visible .frosted-team-card__image,
+  .frosted-team-card:focus-within .frosted-team-card__image {
+    scale: var(--team-image-scale);
+    filter: blur(var(--team-image-blur)) saturate(.88) brightness(.92);
+  }
+
+  .frosted-team-card:hover .frosted-team-card__shade,
+  .frosted-team-card:focus-visible .frosted-team-card__shade,
+  .frosted-team-card:focus-within .frosted-team-card__shade,
+  .frosted-team-card:hover .frosted-team-card__bio,
+  .frosted-team-card:focus-visible .frosted-team-card__bio,
+  .frosted-team-card:focus-within .frosted-team-card__bio {
+    opacity: 1;
+  }
+
+  .frosted-team-card:hover .frosted-team-card__bio,
+  .frosted-team-card:focus-visible .frosted-team-card__bio,
+  .frosted-team-card:focus-within .frosted-team-card__bio {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 809.98px) {
+  .frosted-team-card { gap: 20px; }
+  .frosted-team-card__bio { display: none; }
+  .frosted-team-card__name { font-size: 28px; line-height: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frosted-team-card__image,
+  .frosted-team-card__shade,
+  .frosted-team-card__bio {
+    transition: none;
+  }
+}

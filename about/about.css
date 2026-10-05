@@ -1,0 +1,194 @@
+.about-body { overflow-x: hidden; }
+
+.about-body .site-header:not(.is-scrolled):not(.menu-open) { color: #f7f7f4; }
+.about-body .site-header:not(.is-scrolled):not(.menu-open) .brand img { filter: invert(1); }
+.about-body .site-header:not(.is-scrolled):not(.menu-open) .nav-dot { background: #f7f7f4; }
+.about-body .site-header:not(.is-scrolled):not(.menu-open) .call-button {
+  color: #141414;
+  background: #f7f7f4;
+  box-shadow: 0 1px 1px rgba(0,0,0,.2), 0 8px 28px rgba(0,0,0,.22);
+}
+
+.about-body .desktop-nav a.is-active .nav-dot {
+  bottom: 0;
+  opacity: 1;
+  filter: blur(0);
+}
+
+.about-hero {
+  min-height: min(920px, calc(100svh - 16px));
+  margin: 8px;
+  border-radius: 48px;
+}
+
+.about-hero__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: inherit;
+  padding: 128px 72px 88px;
+}
+
+.about-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: .36px;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: about-copy-in .75s .25s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.about-hero__eyebrow i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f00;
+  box-shadow: 0 0 10px rgba(255,0,0,.7);
+}
+
+.about-hero h1 {
+  max-width: 850px;
+  margin: 0;
+  font: 400 clamp(62px, 6.25vw, 96px)/.98 "Fraunces Variable", Fraunces, Georgia, serif;
+  font-variation-settings: "opsz" 72, "wght" 400, "SOFT" 100, "WONK" 1;
+  letter-spacing: -.048em;
+}
+
+.about-hero h1 span {
+  display: inline-block;
+  margin-right: .18em;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: about-copy-in .8s calc(360ms + var(--word) * 55ms) cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.about-hero__lead {
+  max-width: 540px;
+  margin: 30px 0 0;
+  color: rgba(247,247,244,.62);
+  font-size: 17px;
+  line-height: 27px;
+  letter-spacing: -.34px;
+  opacity: 0;
+  animation: about-copy-in .8s .82s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.about-hero__hint {
+  position: absolute;
+  right: 36px;
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(247,247,244,.48);
+  font-size: 12px;
+  letter-spacing: .12px;
+}
+
+.about-hero__hint::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(247,247,244,.7);
+  border-radius: 50%;
+  animation: about-pulse 2s ease-in-out infinite;
+}
+
+@keyframes about-copy-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes about-pulse {
+  50% { box-shadow: 0 0 0 7px rgba(247,247,244,0); background: rgba(247,247,244,.85); }
+}
+
+.about-story {
+  position: relative;
+  margin: 8px;
+  padding: 120px 64px 132px;
+  overflow: hidden;
+  background: #faf9f7;
+}
+
+.about-story::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/services/paper-texture.png") center / 720px auto repeat;
+  opacity: .18;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.about-story__inner { position: relative; max-width: 1432px; margin: 0 auto; }
+
+.about-story__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.about-story__label i { width: 7px; height: 7px; border-radius: 50%; background: #f00; }
+
+.about-story h2 {
+  max-width: 1040px;
+  margin: 28px 0 0;
+  font: 400 clamp(52px, 5vw, 80px)/1.02 "Fraunces Variable", Fraunces, Georgia, serif;
+  font-variation-settings: "opsz" 72, "wght" 400, "SOFT" 100, "WONK" 1;
+  letter-spacing: -.042em;
+}
+
+.about-story__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 96px;
+}
+
+.about-principle {
+  min-height: 310px;
+  padding: 28px;
+  border: 1px solid rgba(20,20,20,.07);
+  border-radius: 24px;
+  background: rgba(255,255,255,.64);
+  box-shadow: 0 24px 48px -32px rgba(0,0,0,.16);
+}
+
+.about-principle__number { color: #a4a4a4; font: 400 14px/20px Inter, Arial, sans-serif; }
+.about-principle h3 {
+  margin: 112px 0 0;
+  font: 400 32px/36px "Fraunces Variable", Fraunces, Georgia, serif;
+  letter-spacing: -1.28px;
+}
+.about-principle p { margin: 12px 0 0; color: #656565; font-size: 15px; line-height: 23px; }
+
+@media (max-width: 809.98px) {
+  .about-hero { min-height: calc(100svh - 16px); border-radius: 38px; }
+  .about-hero__copy { padding: 124px 24px 76px; }
+  .about-hero h1 { font-size: clamp(48px, 14vw, 66px); }
+  .about-hero__lead { max-width: 330px; font-size: 15px; line-height: 23px; }
+  .about-hero__hint { display: none; }
+  .about-story { padding: 88px 16px 96px; }
+  .about-story h2 { font-size: 48px; line-height: 51px; }
+  .about-story__grid { grid-template-columns: 1fr; margin-top: 56px; }
+  .about-principle { min-height: 250px; }
+  .about-principle h3 { margin-top: 72px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__eyebrow,
+  .about-hero h1 span,
+  .about-hero__lead { opacity: 1; transform: none; animation: none; }
+  .about-hero__hint::before { animation: none; }
+}

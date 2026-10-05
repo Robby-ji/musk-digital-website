@@ -1,0 +1,72 @@
+/*
+ * Glass Orbit Hover
+ * Reusable cursor-driven 3D tilt, inner parallax and moving light reflection.
+ */
+
+.glass-orbit-hover {
+  --glass-orbit-tilt-x: 0deg;
+  --glass-orbit-tilt-y: 0deg;
+  --glass-orbit-image-x: 0px;
+  --glass-orbit-image-y: 0px;
+  --glass-orbit-glow-x: 50%;
+  --glass-orbit-glow-y: 50%;
+  --glass-orbit-radius: 34px;
+  --glass-orbit-accent: 255, 0, 0;
+  perspective: 1100px;
+}
+
+.glass-orbit-hover [data-glass-orbit-stage] {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(20, 20, 20, .07);
+  border-radius: var(--glass-orbit-radius);
+  background: #f9f8f6;
+  box-shadow: 0 28px 70px -42px rgba(37, 16, 10, .38), 0 4px 12px rgba(20,20,20,.035);
+  transform: rotateX(var(--glass-orbit-tilt-x)) rotateY(var(--glass-orbit-tilt-y));
+  transform-style: preserve-3d;
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, border-color .5s ease;
+  will-change: transform;
+}
+
+.glass-orbit-hover [data-glass-orbit-layer] {
+  display: block;
+  width: calc(100% + 26px);
+  height: calc(100% + 26px);
+  margin: -13px;
+  object-fit: cover;
+  transform: translate3d(var(--glass-orbit-image-x), var(--glass-orbit-image-y), 22px) scale(1.015);
+  transition: transform .5s cubic-bezier(.22,1,.36,1), filter .5s ease;
+  will-change: transform;
+}
+
+.glass-orbit-hover [data-glass-orbit-shine] {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--glass-orbit-glow-x) var(--glass-orbit-glow-y), rgba(255,255,255,.62), rgba(255,255,255,.1) 18%, transparent 42%);
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity .4s ease;
+}
+
+.glass-orbit-hover:hover [data-glass-orbit-stage] {
+  border-color: rgba(var(--glass-orbit-accent), .14);
+  box-shadow: 0 46px 90px -48px rgba(100, 18, 8, .45), 0 8px 24px rgba(20,20,20,.055);
+}
+
+.glass-orbit-hover:hover [data-glass-orbit-layer] {
+  filter: saturate(1.06) contrast(1.015);
+}
+
+.glass-orbit-hover:hover [data-glass-orbit-shine] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-orbit-hover [data-glass-orbit-stage],
+  .glass-orbit-hover [data-glass-orbit-layer] {
+    transform: none !important;
+  }
+}

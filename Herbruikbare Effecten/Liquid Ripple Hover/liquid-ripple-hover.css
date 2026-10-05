@@ -1,0 +1,56 @@
+/*
+ * Liquid Ripple Hover
+ * WebGL water-ripple image distortion inspired by Orionix's feedback shader.
+ */
+
+.liquid-ripple-hover {
+  --liquid-ripple-radius: 34px;
+  --liquid-ripple-border: rgba(20, 20, 20, .07);
+  --liquid-ripple-background: #f9f8f6;
+}
+
+.liquid-ripple-hover [data-liquid-ripple-stage] {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--liquid-ripple-border);
+  border-radius: var(--liquid-ripple-radius);
+  background: var(--liquid-ripple-background);
+  box-shadow: 0 28px 70px -42px rgba(37, 16, 10, .38), 0 4px 12px rgba(20,20,20,.035);
+  transition: border-color .45s ease, box-shadow .45s ease;
+}
+
+.liquid-ripple-hover [data-liquid-ripple-source],
+.liquid-ripple-hover [data-liquid-ripple-canvas] {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.liquid-ripple-hover [data-liquid-ripple-source] {
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity .2s ease;
+}
+
+.liquid-ripple-hover [data-liquid-ripple-canvas] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.liquid-ripple-hover.is-liquid-ripple-ready [data-liquid-ripple-source] { opacity: 0; }
+.liquid-ripple-hover.is-liquid-ripple-ready [data-liquid-ripple-canvas] { opacity: 1; }
+
+.liquid-ripple-hover:hover [data-liquid-ripple-stage] {
+  border-color: rgba(255, 0, 0, .13);
+  box-shadow: 0 42px 88px -48px rgba(100, 18, 8, .42), 0 8px 24px rgba(20,20,20,.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-ripple-hover [data-liquid-ripple-canvas] { display: none; }
+  .liquid-ripple-hover [data-liquid-ripple-source] { opacity: 1 !important; }
+}

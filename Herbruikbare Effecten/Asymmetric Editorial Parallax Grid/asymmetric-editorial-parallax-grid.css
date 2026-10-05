@@ -1,0 +1,132 @@
+.editorial-grid {
+  position: relative;
+  height: 4590px;
+  padding-inline: 64px;
+  overflow: hidden;
+  background: #faf9f7;
+}
+
+.editorial-grid__header {
+  position: absolute;
+  top: 80px;
+  left: 64px;
+  width: 520px;
+  z-index: 2;
+}
+
+.editorial-grid__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.04), 0 24px 40px -16px rgba(0,0,0,.08);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: .36px;
+  text-transform: uppercase;
+}
+
+.editorial-grid__pill i { width: 8px; height: 8px; border-radius: 50%; background: #f00; }
+
+.editorial-grid__header h2 {
+  margin: 16px 0 0;
+  font: 400 56px/60px "Fraunces Variable", Fraunces, Georgia, serif;
+  letter-spacing: -2.24px;
+}
+
+.editorial-grid__header h2 > span { display: block; overflow: hidden; }
+.editorial-grid__header h2 > span > span {
+  display: block;
+  opacity: 0;
+  transform: translateY(112%);
+  transition: opacity .55s ease, transform .9s cubic-bezier(.22,1,.36,1);
+}
+.editorial-grid__pill {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .55s ease, transform .8s cubic-bezier(.22,1,.36,1);
+}
+.editorial-grid__header h2 > span:nth-child(2) > span { transition-delay: .08s; }
+.editorial-grid__header h2 > span:nth-child(3) > span { transition-delay: .16s; }
+.editorial-grid__header.is-visible h2 > span > span,
+.editorial-grid__header.is-visible .editorial-grid__pill { opacity: 1; transform: none; }
+
+.editorial-grid__projects { position: absolute; inset: 0 64px; }
+.editorial-card { position: absolute; display: flex; flex-direction: column; gap: 24px; }
+.editorial-card--narrow { width: 32.75%; }
+.editorial-card--wide { width: 41.16%; }
+.editorial-card--one { top: 304px; right: 0; }
+.editorial-card--two { top: 805px; left: 0; }
+.editorial-card--three { top: 1561px; left: 50.44%; }
+.editorial-card--four { top: 2472px; left: 8.4%; }
+.editorial-card--five { top: 3168px; right: 0; }
+.editorial-card--six { top: 3779px; left: 0; }
+
+.editorial-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: .8;
+  padding: 4px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.04), 0 40px 40px -24px rgba(0,0,0,.08);
+  opacity: 0;
+  transform: translateY(72px) scale(.985);
+  transition: opacity .7s ease, transform 1s cubic-bezier(.22,1,.36,1);
+}
+
+.editorial-card__media img {
+  position: absolute;
+  top: -20%;
+  left: 4px;
+  width: calc(100% - 8px);
+  height: 140%;
+  border-radius: 20px;
+  object-fit: cover;
+  transform: translate3d(0, var(--parallax-y, -19%), 0) scale(1.001);
+  will-change: transform;
+}
+
+.editorial-card__copy { min-height: 144px; padding-inline: 12px; }
+.editorial-card__copy h3,
+.editorial-card__copy > p,
+.editorial-card__tags {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .8s cubic-bezier(.22,1,.36,1);
+}
+.editorial-card__copy h3 { margin: 0; font: 400 32px/36px "Fraunces Variable", Fraunces, Georgia, serif; letter-spacing: -1.28px; }
+.editorial-card__copy > p { margin: 8px 0 0; color: #656565; font: 400 16px/24px Inter, Arial, sans-serif; letter-spacing: -.32px; transition-delay: .07s; }
+.editorial-card__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; transition-delay: .14s; }
+.editorial-card__tags span { min-height: 32px; padding: 6px 12px; border-radius: 100px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.08), 0 4px 6px rgba(0,0,0,.04), 0 24px 40px -16px rgba(0,0,0,.08); font: 400 14px/20px Inter, Arial, sans-serif; }
+.editorial-card.is-visible .editorial-card__media,
+.editorial-card.is-visible .editorial-card__copy h3,
+.editorial-card.is-visible .editorial-card__copy > p,
+.editorial-card.is-visible .editorial-card__tags { opacity: 1; transform: none; }
+
+@media (max-width: 809.98px) {
+  .editorial-grid { height: auto; min-height: 4425px; padding: 42px 12px 64px; }
+  .editorial-grid__header { position: relative; inset: auto; width: auto; margin-inline: 12px; }
+  .editorial-grid__header h2 { margin-top: 10px; font-size: 44px; line-height: 48px; letter-spacing: -1.76px; }
+  .editorial-grid__header h2 > span,
+  .editorial-grid__header h2 > span > span { display: inline; overflow: visible; }
+  .editorial-grid__header h2 > span > span::after { content: " "; }
+  .editorial-grid__projects { position: relative; inset: auto; display: flex; flex-direction: column; gap: 42px; margin-top: 128px; }
+  .editorial-card,
+  .editorial-card--narrow,
+  .editorial-card--wide { position: relative; inset: auto; width: 100%; }
+  .editorial-card__copy { height: 144px; }
+}
+
+@media (min-width: 600px) and (max-width: 809.98px) {
+  .editorial-grid { padding-inline: 24px; }
+  .editorial-grid__header { margin-inline: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-card__media img { transform: none !important; }
+}

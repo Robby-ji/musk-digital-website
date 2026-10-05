@@ -1,0 +1,48 @@
+/* Word-by-word heading entrance, matched to the Works page title. */
+.home-heading-reveal .home-heading-word {
+  display: inline-block;
+  opacity: 0;
+  filter: none;
+  transform: translateY(24px);
+  transition:
+    opacity .75s calc(var(--heading-reveal-delay, 0ms) + var(--heading-word) * 50ms) cubic-bezier(.22, 1, .36, 1),
+    transform .75s calc(var(--heading-reveal-delay, 0ms) + var(--heading-word) * 50ms) cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, transform;
+}
+
+.home-heading-reveal.is-heading-visible .home-heading-word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Preserve the original line wrappers while the words animate independently. */
+.home-heading-effects-ready .hero h1 > span:not(.home-heading-word),
+.home-heading-effects-ready .service-step h2 > span:not(.home-heading-word),
+.home-heading-effects-ready .faq-reveal__header h2 > span:not(.home-heading-word),
+.home-heading-effects-ready .featured-work__header h2 > span > span:not(.home-heading-word),
+.home-heading-effects-ready .idea-reality__copy h2 > span > span:not(.home-heading-word) {
+  display: block;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition: none;
+}
+
+/* The project heading itself no longer rises as one block; its words do. */
+.home-heading-effects-ready .featured-project__content h3 {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.hero .home-heading-reveal {
+  --heading-reveal-delay: 320ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-heading-reveal .home-heading-word {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
