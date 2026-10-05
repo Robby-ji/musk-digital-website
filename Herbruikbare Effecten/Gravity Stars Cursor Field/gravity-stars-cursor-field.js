@@ -14,6 +14,9 @@
       this.connectDistance = Number(root.dataset.connectDistance) || 120;
       this.tint = clamp(Number(root.dataset.tint) || .65, 0, 1);
       this.gravityRadius = Number(root.dataset.gravityRadius) || 340;
+      this.gravityStrength = clamp(Number(root.dataset.gravityStrength) || .2, .04, .4);
+      this.pointerResponse = clamp(Number(root.dataset.pointerResponse) || .32, .05, 1);
+      this.maxOffset = clamp(Number(root.dataset.maxOffset) || 130, 40, 220);
       this.stars = [];
       this.width = 0;
       this.height = 0;
@@ -122,7 +125,7 @@
 
       if (this.pointer.active && distance < this.gravityRadius) {
         const influence = 1 - distance / this.gravityRadius;
-        const force = influence * influence * .095 * step;
+        const force = influence * influence * this.gravityStrength * step;
         star.velocityX += (dx / distance) * force - (dy / distance) * force * .16;
         star.velocityY += (dy / distance) * force + (dx / distance) * force * .16;
       }
@@ -136,9 +139,9 @@
       star.offsetY += star.velocityY * step;
 
       const offsetLength = Math.hypot(star.offsetX, star.offsetY);
-      if (offsetLength > 82) {
-        star.offsetX *= 82 / offsetLength;
-        star.offsetY *= 82 / offsetLength;
+      if (offsetLength > this.maxOffset) {
+        star.offsetX *= this.maxOffset / offsetLength;
+        star.offsetY *= this.maxOffset / offsetLength;
       }
     }
 
@@ -196,8 +199,9 @@
       const elapsed = Math.min(32, time - this.lastTime);
       this.lastTime = time;
       this.step = elapsed / (1000 / 60);
-      this.pointer.x += (this.pointer.targetX - this.pointer.x) * .14;
-      this.pointer.y += (this.pointer.targetY - this.pointer.y) * .14;
+      const pointerEase = 1 - Math.pow(1 - this.pointerResponse, this.step);
+      this.pointer.x += (this.pointer.targetX - this.pointer.x) * pointerEase;
+      this.pointer.y += (this.pointer.targetY - this.pointer.y) * pointerEase;
       this.draw(time, true);
       this.frame = requestAnimationFrame(this.render);
     }
