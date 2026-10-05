@@ -173,17 +173,9 @@ button, input, textarea { font: inherit; }
 
 .services-hero { position: relative; min-height: calc(100svh - 16px); overflow: hidden; isolation: isolate; justify-content: flex-end; color: white; background: #08090b url("assets/musk/hero-musk.webp") center / cover no-repeat; }
 .services-hero::after { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(90deg,rgba(4,5,7,.9) 0%,rgba(4,5,7,.62) 44%,rgba(4,5,7,.12) 82%), linear-gradient(0deg,rgba(4,5,7,.76),transparent 58%); }
-.services-hero.liquid-ripple-hover--wide .services-hero__visual { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; box-shadow: none; }
+.services-hero.liquid-ripple-hover .services-hero__visual { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; box-shadow: none; }
 .services-hero .services-hero__visual img,
 .services-hero .services-hero__visual canvas { border-radius: inherit; }
-.services-hero.liquid-ripple-hover--wide.is-liquid-ripple-ready [data-liquid-ripple-source] { z-index: 0; opacity: 1; }
-.services-hero.liquid-ripple-hover--wide [data-liquid-ripple-canvas] { display: none; }
-.services-hero.liquid-ripple-hover--wide [data-liquid-ripple-stage]::before,
-.services-hero.liquid-ripple-hover--wide [data-liquid-ripple-stage]::after { content: ""; position: absolute; pointer-events: none; opacity: 0; transition: opacity .28s ease; }
-.services-hero.liquid-ripple-hover--wide [data-liquid-ripple-stage]::before { z-index: 2; inset: -1.2%; background: url("assets/musk/hero-musk.webp") center / cover no-repeat; clip-path: circle(0 at var(--liquid-ripple-x,50%) var(--liquid-ripple-y,50%)); filter: brightness(1.12) saturate(1.08); transform: scale(1.018); transition: opacity .28s ease, clip-path .35s cubic-bezier(.22,1,.36,1); }
-.services-hero.liquid-ripple-hover--wide [data-liquid-ripple-stage]::after { z-index: 3; inset: 0; background: radial-gradient(circle 150px at var(--liquid-ripple-x,50%) var(--liquid-ripple-y,50%),rgba(255,255,255,.12) 0 34%,transparent 36%), radial-gradient(circle 185px at var(--liquid-ripple-x,50%) var(--liquid-ripple-y,50%),transparent 0 64%,rgba(255,255,255,.24) 65%,transparent 67%), radial-gradient(circle 225px at var(--liquid-ripple-x,50%) var(--liquid-ripple-y,50%),transparent 0 72%,rgba(255,255,255,.12) 73%,transparent 75%); mix-blend-mode: screen; }
-.services-hero.liquid-ripple-hover--wide.is-liquid-ripple-active [data-liquid-ripple-stage]::before { opacity: .72; clip-path: circle(150px at var(--liquid-ripple-x,50%) var(--liquid-ripple-y,50%)); }
-.services-hero.liquid-ripple-hover--wide.is-liquid-ripple-active [data-liquid-ripple-stage]::after { opacity: 1; }
 .services-hero__content { position: relative; z-index: 2; width: 100%; pointer-events: none; }
 .services-hero .display { max-width: 1050px; margin-top: 26px; font-size: clamp(56px,7vw,108px); text-shadow: 0 8px 34px rgba(0,0,0,.3); }
 .services-hero .lead { color: rgba(255,255,255,.78); }

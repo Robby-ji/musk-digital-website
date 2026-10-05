@@ -111,28 +111,6 @@
     const image = element.querySelector('[data-liquid-ripple-source]');
     const canvas = element.querySelector('[data-liquid-ripple-canvas]');
     if (!stage || !image || !canvas) return;
-
-    if (element.classList.contains('liquid-ripple-hover--wide')) {
-      const updateWideRipple = event => {
-        if (event.pointerType === 'touch') return;
-        const bounds = stage.getBoundingClientRect();
-        const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-        const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-        stage.style.setProperty('--liquid-ripple-x', `${x}%`);
-        stage.style.setProperty('--liquid-ripple-y', `${y}%`);
-      };
-
-      stage.addEventListener('pointerenter', event => {
-        updateWideRipple(event);
-        element.classList.add('is-liquid-ripple-active');
-      });
-      stage.addEventListener('pointermove', updateWideRipple, { passive: true });
-      stage.addEventListener('pointerleave', () => element.classList.remove('is-liquid-ripple-active'));
-      element.dataset.liquidRippleReady = 'true';
-      element.classList.add('is-liquid-ripple-ready');
-      return;
-    }
-
     const gl = canvas.getContext('webgl', {
       alpha: false,
       antialias: false,
